@@ -90,6 +90,8 @@ def connect_to_couchbase(connection_string, db_username, db_password):
     from couchbase.options import ClusterOptions
     from datetime import timedelta
 
+    print("DB Parameters: ", connection_string, db_username, db_password)
+
     auth = PasswordAuthenticator(db_username, db_password)
     options = ClusterOptions(auth)
     connect_string = connection_string
@@ -162,10 +164,12 @@ if __name__ == "__main__":
 
         # Use OpenAI Embeddings
         embedding = OpenAIEmbeddings()
-
+  
+        
         # Connect to Couchbase Vector Store
         cluster = connect_to_couchbase(DB_CONN_STR, DB_USERNAME, DB_PASSWORD)
-
+        
+           
         vector_store = get_vector_store(
             cluster,
             DB_BUCKET,
